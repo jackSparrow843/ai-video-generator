@@ -68,7 +68,7 @@ if "set_prompt" in st.session_state:
     prompt = st.session_state.pop("set_prompt")
 
 def generate_video_hf(prompt, token=""):
-    API_URL = "https://router.huggingface.co/hf-inference/models/damo-vilab/text-to-video-ms-1.7b"
+    API_URL = "https://router.huggingface.co/hf-inference/models/ali-vilab/text-to-video-ms-1.7b"
     headers = {"Content-Type": "application/json"}
     if token:
         headers["Authorization"] = f"Bearer {token}"
@@ -80,6 +80,8 @@ def generate_video_hf(prompt, token=""):
         return None, "Model is loading - wait 20 seconds and try again."
     elif response.status_code == 401:
         return None, "Invalid HuggingFace token."
+    elif response.status_code == 404:
+        return None, "Model not found - please try again later."
     else:
         return None, f"Error {response.status_code}: {response.text[:200]}"
 
