@@ -68,7 +68,7 @@ if "set_prompt" in st.session_state:
     prompt = st.session_state.pop("set_prompt")
 
 def generate_video_hf(prompt, token=""):
-    API_URL = "https://api-inference.huggingface.co/models/damo-vilab/text-to-video-ms-1.7b"
+    API_URL = "https://router.huggingface.co/hf-inference/models/damo-vilab/text-to-video-ms-1.7b"
     headers = {"Content-Type": "application/json"}
     if token:
         headers["Authorization"] = f"Bearer {token}"
